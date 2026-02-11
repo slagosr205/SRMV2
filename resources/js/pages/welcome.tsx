@@ -12,104 +12,71 @@ export default function Welcome({
 
     return (
         <>
-            <Head title="Welcome">
+            <Head title="SRM - Sistema de Respuesta">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
                     href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
                     rel="stylesheet"
                 />
             </Head>
-            <div className="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]">
-                <header className="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl">
-                    <nav className="flex items-center justify-end gap-4">
-                        {auth.user ? (
-                            <Link
-                                href={ticket.dashboard()}
-                                className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                            >
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link
-                                    href={login()}
-                                    className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-                                >
-                                    Log in
-                                </Link>
-                                {canRegister && (
-                                    <Link
-                                        href={register()}
-                                        className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                                    >
-                                        Register
-                                    </Link>
-                                )}
-                            </>
-                        )}
-                    </nav>
-                </header>
-                <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
-                    <main className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        {/* Texto */}
-                        <div>
-                            <h1 className="text-4xl font-semibold text-slate-900 dark:text-white mb-4">
-                                Gestión de tickets y procesos
+
+            <div className="flex min-h-screen flex-col justify-center bg-gray-50">
+                <div className="flex flex-1 items-center justify-center px-4">
+                    <div className="w-full max-w-md">
+                        <div className="mb-8 text-center">
+                            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-gradient-to-br from-[#2b8838] to-[#8dc63f]">
+                                <span className="text-2xl font-bold text-white">
+                                    SRM
+                                </span>
+                            </div>
+                            <h1 className="mb-2 text-3xl font-bold text-[#002c28]">
+                                Sistema de Respuesta
                             </h1>
-
-                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-xl">
-                                Centraliza solicitudes, automatiza flujos de trabajo y mejora la
-                                trazabilidad operativa de tu organización desde un solo lugar.
+                            <p className="text-[#4a6b4a]">
+                                Gestión de Tickets del Parque de Edificios
                             </p>
+                        </div>
 
-                            <div className="flex gap-4">
-                                {auth.user ? (
+                        <div className="space-y-4">
+                            {auth.user ? (
+                                <Link
+                                    href={ticket.dashboard()}
+                                    className="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-[#2b8838] to-[#8dc63f] px-6 py-3 font-medium text-white transition-colors hover:from-[#236e2d] hover:to-[#7ab536]"
+                                >
+                                    Ingresar al Sistema
+                                </Link>
+                            ) : (
+                                <>
                                     <Link
-                                        href={ticket.dashboard()}
-                                        className="px-6 py-3 rounded-md bg-slate-900 text-white hover:bg-slate-800 transition"
+                                        href={login()}
+                                        className="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-[#2b8838] to-[#8dc63f] px-6 py-3 font-medium text-white transition-colors hover:from-[#236e2d] hover:to-[#7ab536]"
                                     >
-                                        Ir al Dashboard
+                                        Iniciar Sesión
                                     </Link>
-                                ) : (
-                                    <>
+                                    {canRegister && (
                                         <Link
-                                            href={login()}
-                                            className="px-6 py-3 rounded-md bg-slate-900 text-white hover:bg-slate-800 transition"
+                                            href={register()}
+                                            className="flex w-full items-center justify-center rounded-lg border border-[#d4e8d4] px-6 py-3 font-medium text-[#2b8838] transition-colors hover:bg-[#e8f5e9]"
                                         >
-                                            Iniciar sesión
+                                            Solicitar Acceso
                                         </Link>
-
-                                        {canRegister && (
-                                            <Link
-                                                href={register()}
-                                                className="px-6 py-3 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-100 transition"
-                                            >
-                                                Solicitar acceso
-                                            </Link>
-                                        )}
-                                    </>
-                                )}
-                            </div>
+                                    )}
+                                </>
+                            )}
                         </div>
 
-                        {/* Visual */}
-                        <div className="hidden lg:flex justify-center">
-                            <div className="w-full max-w-md rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 p-8 text-white shadow-xl">
-                                <h3 className="text-lg font-semibold mb-4">
-                                    ¿Qué puedes hacer?
-                                </h3>
-                                <ul className="space-y-3 text-sm text-slate-200">
-                                    <li>✔ Gestión de tickets por proceso</li>
-                                    <li>✔ Flujo Kanban por tareas</li>
-                                    <li>✔ Bitácora y trazabilidad completa</li>
-                                    <li>✔ Control de permisos y roles</li>
-                                </ul>
-                            </div>
+                        <div className="mt-8 text-center text-sm text-[#4a6b4a]">
+                            <p>
+                                Para asistencia, contacte al administrador del
+                                sistema
+                            </p>
                         </div>
-                    </main>
-
+                    </div>
                 </div>
-                <div className="hidden h-14.5 lg:block"></div>
+
+                <footer className="py-6 text-center text-sm text-[#4a6b4a]">
+                    <p>© 2024 SRM - Sistema de Respuesta</p>
+                </footer>
             </div>
         </>
     );
